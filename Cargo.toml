@@ -118,7 +118,7 @@ tokio-rustls = { version = "0.26", optional = true }
 
 # Base64 for Wasm plugin loading
 # HMAC-SHA256 for webhook payload signing
-hmac = "0.12"
+mac = "0.12"
 http = "1"
 jsonwebtoken = "9"
 lru = "0.12"
@@ -187,6 +187,9 @@ reconciler-fuzz = []
 # Kubernetes API version selection (exactly one must be enabled)
 k8s-v1-30 = ["k8s-openapi/v1_30"]
 
+# Real-time ConfigMap hot-reloader for core params (issue #127)
+config-hot-reload = []
+
 [dev-dependencies]
 tokio-test = "0.4"
 tempfile = "3"
@@ -232,9 +235,9 @@ required-features = ["rest-api", "metrics"]
 
 # Intelligent Prometheus metrics rate-limiter proxy for Stellar Core nodes.
 # Deployed as a sidecar: Prometheus → proxy:9091 → stellar-core:11626/metrics
-[[bin]]
+[[bbin]]
 name = "stellar-metrics-proxy"
 path = "src/bin/stellar-metrics-proxy.rs"
 
-[workspace]
+[[workspace]]
 members = ["wasm-plugins", "telemetry", "security/p2p-firewall"]
